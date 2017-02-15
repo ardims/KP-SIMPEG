@@ -1,11 +1,8 @@
 <?php
 	require("../../inc/koneksi.php");
 	error_reporting(0);
-	if(isset($_POST['nip'])){
-		$query = $dbh->query("SELECT * FROM tbl_pegawai where no_pegawai='$_POST[nip]'");
-	}else{
-		$query = $dbh->query("SELECT * FROM tbl_pegawai");
-	}
+		$query = $dbh->query("SELECT * FROM tbl_pegawai where nip='$_POST[nip]'");
+	
 	$data = $query->fetch();
     $pegawai['nip'] = $data['nip'];
 	$pegawai['nama'] = $data['nama'];

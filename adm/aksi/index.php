@@ -6,7 +6,8 @@
     @$tambah = $_GET['tambah'];
     @$hapus = $_GET['hapus'];
     @$edit = $_GET['edit'];
-    @$nip = $_GET['nip'];
+    @$id = $_GET['nip'];
+    @$nip = $_POST['nip'];
     @$nama = $_POST['nama'];
     @$id_status_peg = $_POST['idStatusPegawai'];
     @$id_satker = $_POST['idSatker'];
@@ -29,8 +30,8 @@
     //tambah data
     if ($tambah != ""){
         if ($tambah == "pegawai"){
-            $dbh->query("insert into tbl_tipe values('', $nip', '$nama','$id_status_peg', '$id_satker', '$id_agama', '$tmp_lahir', '$tgl_lahir', '$alamat', '$jenkel', '$status_nikah', '$gol_darah', '$tinggi', '$berat', '$foto')");
-            header("location:../pegawai");
+            $dbh->query("insert into tbl_pegawai values('', '$nip', '$nama','$id_status_peg', '$id_satker', '$id_agama', '$tmp_lahir', '$tgl_lahir', '$alamat', '$jenkel', '$status_nikah', '$gol_darah', '$tinggi', '$berat', '')");
+            header("location:../pelanggan");
         } else {
             header("location:./");
         }
@@ -39,8 +40,8 @@
     //hapus data
     if ($hapus != ""){
         if ($hapus == "pegawai"){
-            $dbh->query("delete from tbl_pegawai where nip='$nip'");
-            header("location:../pegawai");
+            $dbh->query("delete from tbl_pegawai where nip='$id'");
+            header("location:../pelanggan");
         } else {
             header("location:../");
         }
@@ -50,7 +51,7 @@
     if ($edit != ""){
         if ($edit == "pegawai"){
             $dbh->query("update tbl_tipe set nama = '$nama', id_status_pegawai = '$id_status_peg', id_satker = '$id_satker', id_agama = '$id_agama', tmp_lahir = '$tmp_lahir', tgl_lahir = '$tgl_lahir', alamat = '$alamat',jenkel = '$jenkel', status_nikah = '$status_nikah', gol_darah = '$gol_darah', tinggi = '$tinggi', berat = '$berat', foto = '$foto'  where nip='$nip'");
-            header("location:../pegawai");
+            header("location:../pelanggan");
         }else {
             header("location:../");
         }

@@ -34,15 +34,15 @@
                         success:function(data){
                             //$("#nip").val(data.nip);
                             $("#nama").val(data.nama);
-                            $("#statusPegawai").val(data.status_pegawai);
-                            $("#satker").val(data.satker);
-                            $("#agama").val(data.agama);
+                            $("#idStatusPegawai").val(data.status_pegawai);
+                            $("#idSatker").val(data.satker);
+                            $("#idAgama").val(data.agama);
                             $("#tempatLahir").val(data.tempat_lahir);
                             $("#tglLahir").val(data.tempat_lahir);
                             $("#alamat").val(data.alamat);
                             $("#jeniskelamin").val(data.jeniskelamin);
                             $("#statusnikah").val(data.statusnikah);
-                            $("#golongandarah").val(data.golongandarah);
+                            $("#golDarah").val(data.golongandarah);
                             $("#tinggi").val(data.tinggi);
                             $("#berat").val(data.berat);
                             $("#foto").val(data.foto);
@@ -130,10 +130,10 @@
                                         <td>$data[berat]</td>
                                         <td>$data[foto]</td>
                                         <td>
-                                            <a data-id='$data[nip]' class='edit btn btn-default btn-xs btn-success' data-href='../aksi/?edit=pegawai&id=$data[nip]' data-toggle='modal' data-target='#editPegawai'>
+                                            <a data-id='$data[nip]' class='edit btn btn-default btn-xs btn-success' data-href='../aksi/?edit=pegawai&nip=$data[nip]' data-toggle='modal' data-target='#editPegawai'>
                                                 <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Edit
                                             </a>
-                                            <a id='$data[nip]' class='hapus btn btn-default btn-xs btn-danger' href='#' data-href='../aksi/?hapus=pelanggan&id=$data[nip]' data-toggle='modal' data-target='#confirmDelete'>
+                                            <a id='$data[nip]' class='hapus btn btn-default btn-xs btn-danger' href='#' data-href='../aksi/?hapus=pegawai&nip=$data[nip]' data-toggle='modal' data-target='#confirmDelete'>
                                                 <span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span> Hapus
                                             </a>
                                         </td>
@@ -154,51 +154,100 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">
-                            Tambah Pelanggan
+                            Tambah Data Pegawai
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" action="../aksi/?tambah=pelanggan" method="POST">
-                            <div class="form-group">
-                                <label for="noPelanggan" class="col-sm-2 control-label">No. Pelanggan</label>
+                        <form class="form-horizontal" action="../aksi/?tambah=pegawai" method="POST">
+                            <!--div class="form-group">
+                                <label for="nip" class="col-sm-2 control-label">NIP</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="no_pelanggan" value=<?php
-                                        $query = $dbh->query("select count(*) from tbl_pelanggan");
-                                        $data = $query->fetch();
-                                        echo $data[0]+1;
+                                        //$query = $dbh->query("select count(*) from tbl_pelanggan");
+                                        //$data = $query->fetch();
+                                        //echo $data[0]+1;
                                     ?> class="form-control" readonly>
+                                </div>
+                            </div-->
+                            <div class="form-group">
+                                <label for="nip" class="col-sm-2 control-label">Nip</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="nip" value="" class="form-control" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="namaPelanggan" class="col-sm-2 control-label">Nama Lengkap</label>
+                                <label for="nama" class="col-sm-2 control-label">Nama Lengkap</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="nama_pelanggan" value="" class="form-control" required>
+                                    <input type="text" name="nama" value="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="idStatusPegawai" class="col-sm-2 control-label">Status Pegawai</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="idStatusPegawai" value="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="idSatker" class="col-sm-2 control-label">Satuan Kerja</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="idSatker" value="" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="idAgama" class="col-sm-2 control-label">Agama</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="idAgama" value="" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tmpLahir" class="col-sm-2 control-label">Tempat Lahir</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="tmpLahir" value="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tglLahir" class="col-sm-2 control-label">Tanggal Lahir</label>
+                                <div class="col-sm-10">
+                                    <input type="date" name="tglLahir" value="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="alamat" class="col-sm-2 control-label">Alamat</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" rows="3" name="alamat_pelanggan" required></textarea>
+                                    <textarea wrap="hard" name="alamat" class="form-control" ></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="noTelp" class="col-sm-2 control-label">No. Telp/HP</label>
+                                <label for="jenkel" class="col-sm-2 control-label">Jenis Kelamin</label>
                                 <div class="col-sm-10">
-                                    <input type="tel" name="telp_pelanggan" value="" class="form-control" required>
+                                    <input type="text" name="jenkel" value="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="username" class="col-sm-2 control-label">Username</label>
+                                <label for="statusNikah" class="col-sm-2 control-label">Status Nikah</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="username" value="" class="form-control" required>
+                                    <input type="text" name="statusNikah" value="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-sm-2 control-label">Password</label>
+                                <label for="golDarah" class="col-sm-2 control-label">Golongan Darah</label>
                                 <div class="col-sm-10">
-                                    <input type="password" name="password" value="" class="form-control" required>
+                                    <input type="text" name="golDarah" value="" class="form-control">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="tinggi" class="col-sm-2 control-label">Tinggi</label>
+                                <div class="col-sm-10">
+                                    <input type="number" name="tinggi" value="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="berat" class="col-sm-2 control-label">Berat</label>
+                                <div class="col-sm-10">
+                                    <input type="number" name="berat" value="" class="form-control">
+                                </div>
+                            </div>
+                            
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
@@ -210,7 +259,7 @@
         </div>
 
         <!-- Modal Edit Pelanggan -->
-        <div id="editPelanggan" class="modal fade" role="dialog">
+        <div id="editPegawai" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -222,39 +271,75 @@
                     <div class="modal-body">
                         <form id="formEdit" class="form-horizontal" method="POST">
                             <div class="form-group">
-                                <label for="noPelanggan" class="col-sm-2 control-label">No. Pelanggan</label>
+                                <label for="nama" class="col-sm-2 control-label">Nama Lengkap</label>
                                 <div class="col-sm-10">
-                                    <input id="no_pelanggan" type="text" name="no_pelanggan" value="" class="form-control" readonly>
+                                    <input type="text" id="nama"  class="form-control" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="namaPelanggan" class="col-sm-2 control-label">Nama Lengkap</label>
+                                <label for="idStatusPegawai" class="col-sm-2 control-label">Status Pegawai</label>
                                 <div class="col-sm-10">
-                                    <input id="nama_pelanggan" type="text" name="nama_pelanggan" value="" class="form-control" required>
+                                    <input type="text" id="idStatusPegawai"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="idSatker" class="col-sm-2 control-label">Satuan Kerja</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="idSatker"  class="form-control" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="idAgama" class="col-sm-2 control-label">Agama</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="idAgama"  class="form-control" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tempatLahir" class="col-sm-2 control-label">Tempat Lahir</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="tempatLahir"  class="form-control" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tglLahir" class="col-sm-2 control-label">Tanggal Lahir</label>
+                                <div class="col-sm-10">
+                                    <input type="date" id="tglLahir"  class="form-control" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="alamat" class="col-sm-2 control-label">Alamat</label>
                                 <div class="col-sm-10">
-                                    <textarea id="alamat_pelanggan" class="form-control" rows="3" name="alamat_pelanggan" required></textarea>
+                                    <textarea wrap="hard" id="alamat" class="form-control" ></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="noTelp" class="col-sm-2 control-label">No. Telp/HP</label>
+                                <label for="jeniskel" class="col-sm-2 control-label">Jenis Kelamin</label>
                                 <div class="col-sm-10">
-                                    <input id="telp_pelanggan" type="tel" name="telp_pelanggan" value="" class="form-control" required>
+                                    <input type="text" id="jeniskelamin"  class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="username" class="col-sm-2 control-label">Username</label>
+                                <label for="statusNikah" class="col-sm-2 control-label">Status Nikah</label>
                                 <div class="col-sm-10">
-                                    <input id="username" type="text" name="username" value="" class="form-control" required>
+                                    <input type="text" id="statusnikah"  class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-sm-2 control-label">Password</label>
+                                <label for="golDarah" class="col-sm-2 control-label">Golongan Darah</label>
                                 <div class="col-sm-10">
-                                    <input id="password" type="password" name="password" value="" class="form-control" required>
+                                    <input type="text" id="golDarah"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tinggi" class="col-sm-2 control-label">Tinggi</label>
+                                <div class="col-sm-10">
+                                    <input type="number" id="tinggi"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="berat" class="col-sm-2 control-label">Berat</label>
+                                <div class="col-sm-10">
+                                    <input type="number" id="berat"  class="form-control">
                                 </div>
                             </div>
                     </div>
