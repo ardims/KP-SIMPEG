@@ -6,5 +6,9 @@
 
 ### TODO
 1. Buat 
-    * input data pegawai
+    * CRUD DATA PEGAWAI
 2. Masukan Template
+
+
+>>NOTE:
+>>>Sampel crud berhasil di folder pelanggan/ dan aksi/
